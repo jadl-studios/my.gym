@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-abstract class AreaAlunoController
+use Illuminate\Routing\Controller;
+
+class AreaAlunoController extends Controller
 {
     public function index()
 {

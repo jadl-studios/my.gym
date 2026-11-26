@@ -6,7 +6,7 @@
     <title>My.GYM</title>
 </head>
 <body>
-    <form action="{{ route('login.professor.post') }}" method="POST">
+    <form action="{{ route('login.aluno.post') }}" method="POST">
     @csrf
 
     <label for="email">E-mail</label>

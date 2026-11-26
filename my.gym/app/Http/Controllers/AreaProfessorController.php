@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-abstract class AreaProfessorController
+use Illuminate\Routing\Controller;
+
+class AreaProfessorController extends Controller
 {
     public function index()
 {

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-abstract class HomeController
+use Illuminate\Routing\Controller;
+
+class HomeController extends Controller
 {
         public function index()
 {
