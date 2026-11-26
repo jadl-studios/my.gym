@@ -2,36 +2,40 @@
 
 namespace App\Http\Controllers;
 
-namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Routing\Controller;
 
-abstract class LoginAlunoController
+class LoginAlunoController extends Controller
 {
     public function index()
-{
-    return view('login-professor');
-}
+    {
+        return view('login-aluno');
+    }
 
     public function login(Request $request)
     {
-        $credenciais = $request->validate([
+        $request->validate([
             'email' => ['required', 'email'],
-            'senha' => ['required'],
+            'password' => ['required'],
         ]);
 
-        if (Auth::attempt($credenciais)) {
-            $request->session()->regenerate();
-            return redirect()->intended('/area-aluno');
+        if ($request->email === 'cristianoronaldo@mygym.com' && $request->password === '123456') {
+            $request->session()->put('usuario_logado', [
+                'nome' => 'Cristiano Ronaldo',
+                'tipo' => 'aluno',
+            ]);
+
+            return redirect()->route('area.aluno');
         }
 
         return back()->withErrors([
-            'email' => 'E-mail ou senha inválidos.',
-        ]);
+            'email' => 'E-mail ou senha de aluno inválidos.',
+        ])->onlyInput('email');
     }
 
-
-
-
+    public function logout(Request $request)
+    {
+        $request->session()->forget('usuario_logado');
+        return redirect()->route('home');
+    }
 }

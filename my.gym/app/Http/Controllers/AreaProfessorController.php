@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 abstract class AreaProfessorController
 {
-        public function index()
+    public function index()
 {
-return view('area-professor');
+    if(session('usuario_logado.tipo') !== 'professor'){
+        return redirect()->route('login.professor');
+    }
+    return view('area-professor');
 }
 }

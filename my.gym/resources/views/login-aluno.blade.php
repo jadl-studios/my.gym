@@ -4,14 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My.GYM</title>
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+
 </head>
 <body>
-    <label for="ID">ID:</label>
-     <input type="ID" id="ID" name="ID" required>
-    </label>
-    <label for="password">Senha:</label>
-        <input type="password" id="password" name="password" required>
-        <button type="submit">Entrar</button>
-    </label>
+    <form action="{{ route('login.aluno.post') }}" method="POST">
+    @csrf
+
+    <label for="email">E-mail</label>
+    <input type="email" id="email" name="email" value="{{ old('email') }}" required>
+
+    <label for="password">Senha</label>
+    <input type="password" id="password" name="password" required>
+
+    @error('email')
+        <p style="color: red;">{{ $mensagem }}</p>
+    @enderror
+
+    <button type="submit">Entrar</button>
+</form>
+
 </body>
 </html>

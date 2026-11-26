@@ -6,7 +6,9 @@ abstract class AreaAlunoController
 {
     public function index()
 {
-return view('area-aluno');
+    if(session('usuario_logado.tipo') !== 'aluno'){
+        return redirect()->route('login.aluno');
+    }
+    return view('area-aluno');
 }
 }
-
